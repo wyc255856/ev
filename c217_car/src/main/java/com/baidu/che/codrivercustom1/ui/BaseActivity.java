@@ -28,29 +28,29 @@ public class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_common);
-
-        mContext = this;
-        Intent intent = getIntent();
-        String title = "";
-        if (intent != null) {
-            title = intent.getStringExtra("title");
-        }
-        if (TextUtils.isEmpty(title)) {
-            title = "示例demo";
-        }
-        ((TextView) findViewById(R.id.txt_title)).setText(title);
-        mLLContent = (LinearLayout) findViewById(R.id.ll_content);
-        findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-// 为Intent设置Action、Category属性
-                intent.setAction(Intent.ACTION_MAIN);// "android.intent.action.MAIN"
-                intent.addCategory(Intent.CATEGORY_HOME); //"android.intent.category.HOME"
-               startActivity(intent);
-            }
-        });
+//        setContentView(R.layout.activity_common);
+//
+//        mContext = this;
+//        Intent intent = getIntent();
+//        String title = "";
+//        if (intent != null) {
+//            title = intent.getStringExtra("title");
+//        }
+//        if (TextUtils.isEmpty(title)) {
+//            title = "示例demo";
+//        }
+//        ((TextView) findViewById(R.id.txt_title)).setText(title);
+//        mLLContent = (LinearLayout) findViewById(R.id.ll_content);
+//        findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent();
+//// 为Intent设置Action、Category属性
+//                intent.setAction(Intent.ACTION_MAIN);// "android.intent.action.MAIN"
+//                intent.addCategory(Intent.CATEGORY_HOME); //"android.intent.category.HOME"
+//               startActivity(intent);
+//            }
+//        });
     }
 
     protected void addFunctionBtn(FuncButton... funcButtons) {

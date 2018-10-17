@@ -34,7 +34,7 @@ public class ManuaWelecomActivity extends BaseActivity {
         protected void initData() {
             LogUtil.logError("android.os.Build.VERSION.RELEASE = " + android.os.Build.VERSION.RELEASE);
 
-            setContentView(R.layout.activity_welecom);
+            setContentView(R.layout.activity_m_welecom);
             if (getIntent() != null && getIntent().getStringExtra("carModel") != null) {
                 SharedpreferencesUtil.setCarModel(this, getIntent().getStringExtra("carModel"));
             }

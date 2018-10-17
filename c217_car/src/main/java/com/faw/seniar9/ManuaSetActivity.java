@@ -21,7 +21,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -89,7 +88,7 @@ public class ManuaSetActivity extends Activity {
 //        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB){
 //            webView.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
 //        }
-        setContentView(R.layout.activity_web);
+        setContentView(R.layout.activity_m_web);
         entry = new DownloadEntry(ManuaConfig.getManuaDownLoadUrl(this));
         DownloadConfig.DOWNLOAD_PATH = LibIOUtil.getDefaultPath(this);
 

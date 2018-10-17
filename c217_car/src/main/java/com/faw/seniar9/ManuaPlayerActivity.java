@@ -107,7 +107,7 @@ public class ManuaPlayerActivity extends BaseActivity {
     }
 
     protected void initLoadingDialog() {
-        loadingDialog = new LoadingDialog(this, R.style.load_dialog);
+        loadingDialog = new LoadingDialog(this, R.style.m_load_dialog);
         loadingDialog.setCancelable(false);
 
         loadingDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {

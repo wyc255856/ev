@@ -184,7 +184,7 @@ public class DownloadThread implements Runnable{
 		} finally {
 			if(connection != null){
 				connection.disconnect();
-				Trace.d("DownloadThread==>run()#####index:" + index + "***" + url + "*****close connection");
+				Trace.d("DownloadThread==>run()#####index:" + index + "***" + url + "*****cle connection");
 
 			}
 		}

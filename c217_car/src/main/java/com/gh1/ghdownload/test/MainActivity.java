@@ -47,21 +47,21 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.text_activity);
-		entry = new DownloadEntry(ManuaConfig.getManuaDownLoadUrl(this));
-		DownloadConfig.DOWNLOAD_PATH = LibIOUtil.getDefaultPath(this);
-		entry.name = "x三国.apk";
-		
-		showText = (TextView)findViewById(R.id.show_text);
-		addBtn = (Button)findViewById(R.id.add_btn);
-		cancelBtn = (Button)findViewById(R.id.cancel_btn);
-		pauseBtn = (Button)findViewById(R.id.pause_btn);
-		resumeBtn = (Button)findViewById(R.id.resume_btn);
-		
-		addBtn.setOnClickListener(this);
-		cancelBtn.setOnClickListener(this);
-		pauseBtn.setOnClickListener(this);
-		resumeBtn.setOnClickListener(this);
+//		setContentView(R.layout.text_activity);
+//		entry = new DownloadEntry(ManuaConfig.getManuaDownLoadUrl(this));
+//		DownloadConfig.DOWNLOAD_PATH = LibIOUtil.getDefaultPath(this);
+//		entry.name = "x三国.apk";
+//
+//		showText = (TextView)findViewById(R.id.show_text);
+//		addBtn = (Button)findViewById(R.id.add_btn);
+//		cancelBtn = (Button)findViewById(R.id.cancel_btn);
+//		pauseBtn = (Button)findViewById(R.id.pause_btn);
+//		resumeBtn = (Button)findViewById(R.id.resume_btn);
+//
+//		addBtn.setOnClickListener(this);
+//		cancelBtn.setOnClickListener(this);
+//		pauseBtn.setOnClickListener(this);
+//		resumeBtn.setOnClickListener(this);
 		
 	}
 	

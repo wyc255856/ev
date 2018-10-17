@@ -53,7 +53,7 @@ public class MyProgressBar extends ImageView {
         canvas.drawColor(Color.TRANSPARENT);
         defaultDrawable = this.getBackground();
         if (defaultDrawable == null)
-            defaultDrawable = getResources().getDrawable(R.mipmap.loading1);
+            defaultDrawable = getResources().getDrawable(R.mipmap.m_loading1);
         if (width == 0)
             width = this.getWidth();
         if (height == 0)

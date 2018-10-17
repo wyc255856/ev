@@ -55,7 +55,7 @@ public class ConnectThread implements Runnable{
 			listener.onConnectFaile(e.getMessage());
 		} finally{
 			if (connection != null){
-				Trace.d("ConnectThread==>run()#####" + url + "*****close connection");
+				Trace.d("ConnectThread==>run()#####" + url + "***** connection");
                 connection.disconnect();
             }
 		}

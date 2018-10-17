@@ -23,8 +23,8 @@ public class ManualSelecteCarActivity extends BaseActivity implements View.OnCli
         spinner_layout = findViewById(R.id.spinner_layout);
         spinner_text = (TextView) findViewById(R.id.model);
         spinner = findViewById(R.id.spinner);
-//        yes_btn = findViewById(R.id.yes_btn);
-//        no_btn = findViewById(R.id.no_btn);
+//        m_yes_btn = findViewById(R.id.m_yes_btn);
+//        m_no_btn = findViewById(R.id.m_no_btn);
         initSelect();
     }
 
@@ -34,7 +34,7 @@ public class ManualSelecteCarActivity extends BaseActivity implements View.OnCli
         if (SharedpreferencesUtil.getIsFirst(this)) {
             FireUtil.isExist(this);
         }
-//        no_btn.setOnClickListener(new View.OnClickListener() {
+//        m_no_btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                finish();
@@ -50,7 +50,7 @@ public class ManualSelecteCarActivity extends BaseActivity implements View.OnCli
                 }
             }
         });
-//        yes_btn.setOnClickListener(new View.OnClickListener() {
+//        m_yes_btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //

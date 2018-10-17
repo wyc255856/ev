@@ -27,7 +27,7 @@
         android:id="@+id/loading_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/error_bg"
+        android:background="@mipmap/m_error_bg"
         android:visibility="gone">
 
 
@@ -37,7 +37,7 @@
         android:id="@+id/error_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/error_bg"
+        android:background="@mipmap/m_error_bg"
         android:visibility="gone">
 
         <FrameLayout
@@ -61,7 +61,7 @@
                 android:layout_gravity="bottom|left"
                 android:layout_marginBottom="30dp"
                 android:layout_marginLeft="30dp"
-                android:background="@mipmap/close" />
+                android:background="@mipmap/m_close" />
 
             <ImageView
                 android:id="@+id/reload_btn"
@@ -70,7 +70,7 @@
                 android:layout_gravity="right|bottom"
                 android:layout_marginBottom="30dp"
                 android:layout_marginRight="30dp"
-                android:background="@mipmap/reload" />
+                android:background="@mipmap/m_reload" />
         </FrameLayout>
 
     </FrameLayout>
@@ -128,7 +128,7 @@
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_centerVertical="true"-->
             <!--android:layout_marginLeft="22dp"-->
-            <!--android:src="@mipmap/cloud_icon" />-->
+            <!--android:src="@mipmap/m_cloud_icon" />-->
 
             <!--<com.faw.seniar9.StrokeTextView-->
             <!--android:id="@+id/progress_text"-->

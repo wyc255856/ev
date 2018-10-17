@@ -6,7 +6,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import com.daimajia.numberprogressbar.NumberProgressBar;
 import com.wyc.c217_car.R;
 
 /**
@@ -19,7 +18,7 @@ public class DownloadZipAlert {
 
     public DownloadZipAlert(Context context) {
         LayoutInflater inflaterDl = LayoutInflater.from(context);
-        layout = (FrameLayout) inflaterDl.inflate(R.layout.alert_progress, null);
+        layout = (FrameLayout) inflaterDl.inflate(R.layout.m_alert_progress, null);
         dialog = new AlertDialog.Builder(context).create();
     }
 

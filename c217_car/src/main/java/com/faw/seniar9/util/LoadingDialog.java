@@ -34,7 +34,7 @@ public class LoadingDialog extends Dialog {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.load_dialog);
+		setContentView(R.layout.m_load_dialog);
 		myProgressBar = (MyProgressBar) findViewById(R.id.progress_bar);
 	}
 
