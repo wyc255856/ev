@@ -52,7 +52,7 @@ import java.nio.charset.Charset;
 public class ManuaSetActivity extends Activity {
     public static WebView webView;
     public static Activity context;
-    private View error_view;
+//    private View error_view;
     private View error_alert;
     boolean isError = false;
     public static MyProgressView downLoad_progress;
@@ -93,7 +93,7 @@ public class ManuaSetActivity extends Activity {
         DownloadConfig.DOWNLOAD_PATH = LibIOUtil.getDefaultPath(this);
 
         entry.name = LibIOUtil.UPLOAD_ZIP_FILE;
-        error_view = findViewById(R.id.error_view);
+//        error_view = findViewById(R.id.error_view);
         webView = (WebView) findViewById(R.id.web_view);
         progress_text = (TextView) findViewById(R.id.progress_text);
         downLoad_progress = (MyProgressView) findViewById(R.id.downLoad_progress);
@@ -144,13 +144,13 @@ public class ManuaSetActivity extends Activity {
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 super.onReceivedError(view, request, error);
                 isError = true;
-                if (isError) {
-                    error_view.setVisibility(View.VISIBLE);
-                    error_alert.setVisibility(View.VISIBLE);
-                    webView.setEnabled(true);// 当加载网页的时候将网页进行隐藏
-                } else {
-                    error_view.setVisibility(View.GONE);
-                }
+//                if (isError) {
+//                    error_view.setVisibility(View.VISIBLE);
+//                    error_alert.setVisibility(View.VISIBLE);
+//                    webView.setEnabled(true);// 当加载网页的时候将网页进行隐藏
+//                } else {
+//                    error_view.setVisibility(View.GONE);
+//                }
             }
 
 
@@ -159,13 +159,13 @@ public class ManuaSetActivity extends Activity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
 
-                if (isError) {
-                    error_view.setVisibility(View.VISIBLE);
-                    error_alert.setVisibility(View.VISIBLE);
-                    webView.setEnabled(true);// 当加载网页的时候将网页进行隐藏
-                } else {
-                    error_view.setVisibility(View.GONE);
-                }
+//                if (isError) {
+//                    error_view.setVisibility(View.VISIBLE);
+//                    error_alert.setVisibility(View.VISIBLE);
+//                    webView.setEnabled(true);// 当加载网页的时候将网页进行隐藏
+//                } else {
+//                    error_view.setVisibility(View.GONE);
+//                }
             }
 
             @Override
@@ -223,10 +223,10 @@ public class ManuaSetActivity extends Activity {
         findViewById(R.id.reload_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                error_view.setVisibility(View.VISIBLE);
-                error_alert.setVisibility(View.GONE);
-                isError = false;
-                webView.reload();
+//                error_view.setVisibility(View.VISIBLE);
+//                error_alert.setVisibility(View.GONE);
+//                isError = false;
+//                webView.reload();
             }
         });
         findViewById(R.id.back_icon).setOnClickListener(new View.OnClickListener() {
@@ -315,7 +315,7 @@ public class ManuaSetActivity extends Activity {
             case KeyEvent.KEYCODE_BACK:
                 /** 回退键 事件处理 优先级:视频播放全屏-网页回退-关闭页面 */
 
-                    finish();
+                finish();
                 return true;
             default:
                 return super.onKeyUp(keyCode, event);
@@ -326,6 +326,8 @@ public class ManuaSetActivity extends Activity {
 
     @Override
     protected void onResume() {
+
+
         super.onResume();
         if (isfirst) {
             if (isUpload) {
@@ -380,7 +382,7 @@ public class ManuaSetActivity extends Activity {
                             return;
                         }
                         try {
-                            ManualWebActivity.unZipFiles(saveFile,LibIOUtil.getDefaultPath(context));
+                            ManualWebActivity.unZipFiles(saveFile, LibIOUtil.getDefaultPath(context));
                             ((Activity) context).runOnUiThread(new Runnable() {
 
                                 @Override

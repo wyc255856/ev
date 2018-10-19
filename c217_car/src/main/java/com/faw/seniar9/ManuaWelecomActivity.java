@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.faw.seniar9.util.FireUtil;
 import com.faw.seniar9.util.GetPostUrl;
 import com.faw.seniar9.util.LogUtil;
 import com.faw.seniar9.util.ManuaConfig;
@@ -25,170 +26,177 @@ import java.util.ArrayList;
 public class ManuaWelecomActivity extends BaseActivity {
 
 
-        public int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 2000;
-        public View manua_mzsm;
-        int time = 6;
-        TextView next;
+    public int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 2000;
+    public View manua_mzsm;
+    int time = 6;
+    TextView next;
 
-        @Override
-        protected void initData() {
-            LogUtil.logError("android.os.Build.VERSION.RELEASE = " + android.os.Build.VERSION.RELEASE);
+    @Override
+    protected void initData() {
+        LogUtil.logError("android.os.Build.VERSION.RELEASE = " + android.os.Build.VERSION.RELEASE);
 
-            setContentView(R.layout.activity_m_welecom);
-            if (getIntent() != null && getIntent().getStringExtra("carModel") != null) {
-                SharedpreferencesUtil.setCarModel(this, getIntent().getStringExtra("carModel"));
-            }
-            int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-            if (currentapiVersion >= 23) {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
-                        != PackageManager.PERMISSION_GRANTED) {
-                    //申请WRITE_EXTERNAL_STORAGE权限
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                                    Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.SYSTEM_ALERT_WINDOW},
-                            WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
-                } else {
-                    goMainActivity();
-                }
+        setContentView(R.layout.activity_m_welecom);
+        if (getIntent() != null && getIntent().getStringExtra("carModel") != null) {
+            SharedpreferencesUtil.setCarModel(this, getIntent().getStringExtra("carModel"));
+        }
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion >= 23) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                //申请WRITE_EXTERNAL_STORAGE权限
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE, Manifest.permission.SYSTEM_ALERT_WINDOW},
+                        WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
             } else {
                 goMainActivity();
             }
-            new Thread() {
-                @Override
-                public void run() {
-                    super.run();
-                    String result = GetPostUrl.get("http://www.haoweisys.com/c217_admin/index.php/home/index/get_new_version/car_series/C217/car_type/1");
-                    LogUtil.logError("result = " + result);
-//                SharedpreferencesUtil.setVersion(ManuaWelecomActivity.this, result);
-                    ManuaConfig.VERSION = result;
-                }
-            }.start();
-
-            manua_mzsm = findViewById(R.id.manua_mzsm);
-            next = (TextView) findViewById(R.id.next);
-            next.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (time <= 3) {
-                        handler.removeMessages(100001);
-                        goNext();
-                    }
-                }
-            });
-
+        } else {
+            goMainActivity();
         }
+        if (SharedpreferencesUtil.getIsFirst(this)) {
+            FireUtil.isExist(this);
+        }
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                String result = GetPostUrl.get("http://www.haoweisys.com/c217_admin/index.php/home/index/get_new_version/car_series/C217/car_type/1");
+                LogUtil.logError("result = " + result);
+//                SharedpreferencesUtil.setVersion(ManuaWelecomActivity.this, result);
+                ManuaConfig.VERSION = result;
+            }
+        }.start();
 
-        @Override
-        protected void initWidgetActions() {
-            LogUtil.logError("============isServiceRunning1==============");
+        manua_mzsm = findViewById(R.id.manua_mzsm);
+        next = (TextView) findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (time <= 3) {
+                    handler.removeMessages(100001);
+                    goNext();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void initWidgetActions() {
+        LogUtil.logError("============isServiceRunning1==============");
 //        if (!isServiceRunning(this, "TargetService")) {
 //            LogUtil.logError("============isServiceRunning==============");
 //            Intent i = new Intent();
 //            i.setClass(this, TargetService.class);
 //            startService(i);
 //        }
-        }
+    }
 
 
-        private void goMainActivity() {
-            handler.sendEmptyMessageDelayed(0, 2000);
-        }
+    private void goMainActivity() {
+        handler.sendEmptyMessageDelayed(0, 2000);
+    }
 
-        @Override
-        public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-            if (requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_CODE)
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        if (requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_CODE)
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    goMainActivity();
+                // permission was granted, yay! Do the
+                // contacts-related task you need to do.
+                goMainActivity();
 
-                } else {
-
-                    finish();
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                }
-
-        }
-
-        @Override
-        protected void onDestroy() {
-            super.onDestroy();
-            handler.removeMessages(100001);
-            handler.removeMessages(10000);
-            handler.removeMessages(0);
-        }
-
-        public static boolean isServiceRunning(Context context, String ServiceName) {
-            if (("").equals(ServiceName) || ServiceName == null)
-                return false;
-            ActivityManager myManager = (ActivityManager) context
-                    .getSystemService(Context.ACTIVITY_SERVICE);
-            ArrayList<ActivityManager.RunningServiceInfo> runningService = (ArrayList<ActivityManager.RunningServiceInfo>) myManager
-                    .getRunningServices(30);
-            for (int i = 0; i < runningService.size(); i++) {
-                if (runningService.get(i).service.getClassName().toString()
-                        .equals(ServiceName)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private void goNext() {
-
-
-            boolean isFirst = SharedpreferencesUtil.getIsFirst(com.faw.seniar9.ManuaWelecomActivity.this);
-//        if (!isFirst) {
-            handler.removeMessages(100001);
-            handler.removeMessages(10000);
-            if (SharedpreferencesUtil.isGuest(this)) {
-                Intent intent = new Intent(com.faw.seniar9.ManuaWelecomActivity.this, ManualSelecteCarActivity.class);
-                startActivity(intent);
-                finish();
             } else {
-                Intent intent = new Intent(com.faw.seniar9.ManuaWelecomActivity.this, ManualWebActivity.class);
-                startActivity(intent);
+
                 finish();
+                // permission denied, boo! Disable the
+                // functionality that depends on this permission.
             }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeMessages(100001);
+        handler.removeMessages(10000);
+        handler.removeMessages(0);
+    }
+
+    public static boolean isServiceRunning(Context context, String ServiceName) {
+        if (("").equals(ServiceName) || ServiceName == null)
+            return false;
+        ActivityManager myManager = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        ArrayList<ActivityManager.RunningServiceInfo> runningService = (ArrayList<ActivityManager.RunningServiceInfo>) myManager
+                .getRunningServices(30);
+        for (int i = 0; i < runningService.size(); i++) {
+            if (runningService.get(i).service.getClassName().toString()
+                    .equals(ServiceName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void goNext() {
+
+
+        boolean isFirst = SharedpreferencesUtil.getIsFirst(com.faw.seniar9.ManuaWelecomActivity.this);
+//        if (!isFirst) {
+        handler.removeMessages(100001);
+        handler.removeMessages(10000);
+        if (SharedpreferencesUtil.isGuest(this)) {
+            Intent intent = new Intent(com.faw.seniar9.ManuaWelecomActivity.this, ManualSelecteCarActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(com.faw.seniar9.ManuaWelecomActivity.this, ManualWebActivity.class);
+            startActivity(intent);
+            SharedpreferencesUtil.setIsFirst(ManuaWelecomActivity.this, false);
+            finish();
+        }
 
 //        } else {
 //            Intent intent = new Intent(ManuaWelecomActivity.this, ManualSelecteCarActivity.class);
 //            startActivity(intent);
 //            finish();
 //        }
+    }
+
+    public boolean onPause = false;
+
+    @Override
+    public void onPause() {
+        LogUtil.logError("============onPause==============");
+        super.onPause();
+        onPause = true;
+        handler.removeMessages(100001);
+        handler.removeMessages(10000);
+        handler.removeMessages(0);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (onPause) {
+            onPause = false;
+            handler.sendEmptyMessageDelayed(100001, 1000);
         }
+    }
 
-        public boolean onPause = false;
 
+    Handler handler = new Handler() {
         @Override
-        public void onPause() {
-            LogUtil.logError("============onPause==============");
-            super.onPause();
-            onPause = true;
-            handler.removeMessages(100001);
-            handler.removeMessages(10000);
-            handler.removeMessages(0);
-        }
+        public void handleMessage(Message msg) {
 
-        @Override
-        public void onResume() {
-            super.onResume();
-            if (onPause) {
-                onPause = false;
-                handler.sendEmptyMessageDelayed(100001, 1000);
-            }
-        }
+            super.handleMessage(msg);
 
-
-        Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-
-                super.handleMessage(msg);
+            boolean isFirst = SharedpreferencesUtil.getIsFirst(com.faw.seniar9.ManuaWelecomActivity.this);
+            if (isFirst) {
                 if (msg.what == 0) {
                     manua_mzsm.setVisibility(View.VISIBLE);
                     handler.sendEmptyMessage(100001);
@@ -207,26 +215,29 @@ public class ManuaWelecomActivity extends BaseActivity {
                     time--;
                     handler.sendEmptyMessageDelayed(100001, 1000);
                 }
+            } else {
+                goNext();
             }
-        };
+        }
+    };
 
 
-        @Override
-        public boolean onKeyDown(int keyCode, KeyEvent event) {
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-            if (keyCode == KeyEvent.KEYCODE_BACK
-                    && event.getRepeatCount() == 0) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
 //
-                handler.removeMessages(100001);
-                handler.removeMessages(10000);
-                handler.removeMessages(0);
-                finish();
-                return true;
-            }
-            return super.onKeyDown(keyCode, event);
+            handler.removeMessages(100001);
+            handler.removeMessages(10000);
+            handler.removeMessages(0);
+            finish();
+            return true;
         }
+        return super.onKeyDown(keyCode, event);
+    }
 
-        public void removeHandler() {
+    public void removeHandler() {
 
-        }
+    }
 }

@@ -31,9 +31,7 @@ public class ManualSelecteCarActivity extends BaseActivity implements View.OnCli
 
     @Override
     protected void initWidgetActions() {
-        if (SharedpreferencesUtil.getIsFirst(this)) {
-            FireUtil.isExist(this);
-        }
+
 //        m_no_btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
