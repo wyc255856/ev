@@ -52,11 +52,13 @@ import java.nio.charset.Charset;
 public class ManuaSetActivity extends Activity {
     public static WebView webView;
     public static Activity context;
-//    private View error_view;
+    //    private View error_view;
     private View error_alert;
     boolean isError = false;
     public static MyProgressView downLoad_progress;
     public static TextView progress_text;
+    public static TextView download_text;
+
     public static View downLoad_view;
     private boolean isExit = false;
     private String url;
@@ -96,6 +98,7 @@ public class ManuaSetActivity extends Activity {
 //        error_view = findViewById(R.id.error_view);
         webView = (WebView) findViewById(R.id.web_view);
         progress_text = (TextView) findViewById(R.id.progress_text);
+        download_text = (TextView) findViewById(R.id.download_text);
         downLoad_progress = (MyProgressView) findViewById(R.id.downLoad_progress);
         downLoad_view = findViewById(R.id.downLoad_view);
         error_alert = findViewById(R.id.error_alert);
@@ -361,6 +364,8 @@ public class ManuaSetActivity extends Activity {
         @Override
         public void onDataChanged(DownloadEntry data) {
             ManuaSetActivity.entry = data;
+            download_text.setText("正在下载离线文件...");
+            download_text.setTextSize(16f);
             Log.e("tag", "data.percent = " + data.percent);
             if (data.percent == 100) {
                 downLoad_progress.setProgress(99);

@@ -386,7 +386,7 @@ public class ManualWebActivity extends Activity {
             ZipEntry entry = (ZipEntry) entries.nextElement();
             String zipEntryName = entry.getName();
             InputStream in = zip.getInputStream(entry);
-            String outPath = (descDir + zipEntryName).replaceAll("\\*", "/");
+            final String outPath = (descDir + zipEntryName).replaceAll("\\*", "/");
             ;
             //判断路径是否存在,不存在则创建文件路径
             File file = new File(outPath.substring(0, outPath.lastIndexOf('/')));
@@ -398,9 +398,17 @@ public class ManualWebActivity extends Activity {
                 continue;
             }
             //输出文件路径信息
-            System.out.println(outPath);
+//            System.out.println(outPath);
+            ManuaSetActivity.context.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    ManuaSetActivity.download_text.setTextSize(9f);
+                    if (ManuaSetActivity.download_text != null)
+                        ManuaSetActivity.download_text.setText("正在解压：" + outPath);
+                }
+            });
             OutputStream out = new FileOutputStream(outPath);
-            byte[] buf1 = new byte[1024];
+            byte[] buf1 = new byte[8192];
             int len;
             while ((len = in.read(buf1)) > 0) {
                 out.write(buf1, 0, len);
@@ -410,6 +418,7 @@ public class ManualWebActivity extends Activity {
         }
         System.out.println("******************解压完毕********************");
     }
+
 
     @Override
     protected void onResume() {
