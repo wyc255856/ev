@@ -22,7 +22,7 @@ public class MyProgressView extends View {
     private static final String TAG = MyProgressView.class.getSimpleName();
     private final int min_size=0;
     private int progress;//进度条的进度
-    private int max;//进度条的最大值
+    private int max=100;//进度条的最大值
     private Paint paint = new Paint();
     private RectF rectF = new RectF();
     private final int default_finished_color = Color.rgb(66, 145, 241);
@@ -34,9 +34,6 @@ public class MyProgressView extends View {
     private final int default_max = 100;
     public MyProgressView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MyCircleProgress, defStyle, 0);
-        initByAttributes(attributes);
-        attributes.recycle();
         initPainters();
     }
     public MyProgressView(Context context, AttributeSet attrs) {
@@ -53,14 +50,7 @@ public class MyProgressView extends View {
         paint.setAntiAlias(true);
     }
 
-    private void initByAttributes(TypedArray attributes) {
-//        finishedColor = attributes.getColor(R.styleable.MyCircleProgress_circle_finished_color, default_finished_color);
-//        unfinishedColor = attributes.getColor(R.styleable.MyCircleProgress_circle_unfinished_color, default_unfinished_color);
-//        textColor = attributes.getColor(R.styleable.MyCircleProgress_circle_text_color, default_text_color);//文字颜色
-//        textSize = attributes.getDimension(R.styleable.MyCircleProgress_circle_text_size, default_text_size);//文字大小
-        setMax(attributes.getInt(R.styleable.MyCircleProgress_circle_max, default_max));//设置进度的最大值
-        setProgress(attributes.getInt(R.styleable.MyCircleProgress_circle_progress, 0));//
-    }
+
     /**
      * 给max赋值
      * @param max
@@ -73,7 +63,6 @@ public class MyProgressView extends View {
     }
     /**
      * 设置进度
-     * @param int1
      */
     public void setProgress(int progress) {
         this.progress = progress;
