@@ -10,7 +10,7 @@
     <string name="permission_write_providers_label">Write Vitamio providers</string>
     <string name="permission_write_providers_description">Delete, update or create new items in Vitamio providers.
     </string>
-    <string name="VideoView_error_title">Cannot play video</string>
+    <string name="VideoView_error_title">Cannot playvideo</string>
     <string name="VideoView_error_text_invalid_progressive_playback">Sorry, this video is not valid for streaming to
         this device.
     </string>
