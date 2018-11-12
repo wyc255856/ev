@@ -200,7 +200,7 @@ public class NativeInterface {
 
     @JavascriptInterface
     public String exitApp() {
-        LogUtil.logError("=======getMode========" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context));
+        LogUtil.logError("=======exitApp========" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context));
 //        ManualWebActivity.context.runOnUiThread(new Runnable() {
 //            @Override
 //            public void run() {
@@ -228,7 +228,7 @@ public class NativeInterface {
 
     @JavascriptInterface
     public void upLoad() {
-        LogUtil.logError("=======getMode========" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context));
+        LogUtil.logError("=======upLoad========" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context));
         ManualWebActivity.context.runOnUiThread(new Runnable() {
             @Override
             public void run() {

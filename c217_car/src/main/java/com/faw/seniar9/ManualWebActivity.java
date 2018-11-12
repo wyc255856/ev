@@ -238,7 +238,7 @@ public class ManualWebActivity extends Activity {
 
         webView.addJavascriptInterface(new NativeInterface(), "app");
 
-
+        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setAppCacheMaxSize(1024 * 1024 * 8);
         String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
