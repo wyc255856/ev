@@ -63,10 +63,11 @@ public class NativeInterface {
 
                 if (SharedpreferencesUtil.getHaveLocal(ManualWebActivity.context).equals("1")) {
                     SharedpreferencesUtil.setCarMode(ManualWebActivity.context, mode);
-                    Intent intent = new Intent(ManuaSetActivity.context, ManualWebActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    ManuaSetActivity.context.startActivity(intent);
+//                    Intent intent = new Intent(ManuaSetActivity.context, ManualWebActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                    ManuaSetActivity.context.startActivity(intent);
                     ManuaSetActivity.context.finish();
+                    ((ManualWebActivity) ManualWebActivity.context).resetUI();
                 }
 
             }
@@ -131,7 +132,7 @@ public class NativeInterface {
                 if (SharedpreferencesUtil.getCarMode(ManualWebActivity.context).equals("1")) {
                     if (SharedpreferencesUtil.isGuest(ManualWebActivity.context)) {
                         intent.putExtra("url", ManuaConfig.getManuaUrl(ManualWebActivity.context) + "/pages/set.html?model=" + SharedpreferencesUtil.getCarModel(ManualWebActivity.context) + "&mode=" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context) + "&haveLocalPackage=" + SharedpreferencesUtil.getHaveLocal(ManualWebActivity.context) + "&version=v" + SharedpreferencesUtil.getVersion(ManualWebActivity.context) + "&upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(ManualWebActivity.context)) ? "0" : "1"));
-                    }else{
+                    } else {
                         intent.putExtra("url", ManuaConfig.getManuaUrl(ManualWebActivity.context) + "/pages/setPhone.html?model=" + SharedpreferencesUtil.getCarModel(ManualWebActivity.context) + "&mode=" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context) + "&haveLocalPackage=" + SharedpreferencesUtil.getHaveLocal(ManualWebActivity.context) + "&version=v" + SharedpreferencesUtil.getVersion(ManualWebActivity.context) + "&upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(ManualWebActivity.context)) ? "0" : "1"));
                     }
 
@@ -139,7 +140,7 @@ public class NativeInterface {
                 } else {
                     if (SharedpreferencesUtil.isGuest(ManualWebActivity.context)) {
                         intent.putExtra("url", "file://" + LibIOUtil.getDefaultPath(ManualWebActivity.context) + SharedpreferencesUtil.getModelLocal(ManualWebActivity.context) + "/pages/set.html" + "?model=" + SharedpreferencesUtil.getCarModel(ManualWebActivity.context) + "&mode=" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context) + "&haveLocalPackage=" + SharedpreferencesUtil.getHaveLocal(ManualWebActivity.context) + "&version=v" + SharedpreferencesUtil.getVersion(ManualWebActivity.context) + "&upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(ManualWebActivity.context)) ? "0" : "1"));
-                    }else {
+                    } else {
                         intent.putExtra("url", "file://" + LibIOUtil.getDefaultPath(ManualWebActivity.context) + SharedpreferencesUtil.getModelLocal(ManualWebActivity.context) + "/pages/setPhone.html" + "?model=" + SharedpreferencesUtil.getCarModel(ManualWebActivity.context) + "&mode=" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context) + "&haveLocalPackage=" + SharedpreferencesUtil.getHaveLocal(ManualWebActivity.context) + "&version=v" + SharedpreferencesUtil.getVersion(ManualWebActivity.context) + "&upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(ManualWebActivity.context)) ? "0" : "1"));
                     }
                 }
@@ -157,7 +158,9 @@ public class NativeInterface {
 
                 if (getTopActivity(ManualWebActivity.context).toString().contains("ManuaSetActivity")) {
                     LogUtil.logError("=======goBack========" + "finish1");
-                    ManuaSetActivity.isZipUtilUI=true;
+                    if (ManuaSetActivity.DOWNLOAD_STATE == ManuaSetActivity.MACHINE_STATE.DOWN_LOADING) {
+                        return;
+                    }
                     ManuaSetActivity.context.finish();
                     LogUtil.logError("=======goBack========" + "finish");
                 } else {
@@ -200,7 +203,7 @@ public class NativeInterface {
 
     @JavascriptInterface
     public String exitApp() {
-        LogUtil.logError("=======getMode========" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context));
+        LogUtil.logError("=======exitApp========" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context));
 //        ManualWebActivity.context.runOnUiThread(new Runnable() {
 //            @Override
 //            public void run() {
@@ -228,7 +231,7 @@ public class NativeInterface {
 
     @JavascriptInterface
     public void upLoad() {
-        LogUtil.logError("=======getMode========" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context));
+        LogUtil.logError("=======upLoad========" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context));
         ManualWebActivity.context.runOnUiThread(new Runnable() {
             @Override
             public void run() {

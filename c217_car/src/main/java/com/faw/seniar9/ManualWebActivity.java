@@ -438,6 +438,7 @@ public class ManualWebActivity extends Activity {
 //            }
 //        });
     }
+
     //    @Override
 //
 //    protected void onDestroy() {
@@ -459,6 +460,11 @@ public class ManualWebActivity extends Activity {
 //        super.onDestroy();
 //
 //    }
-
+    public void resetUI() {
+        while (webView.canGoBack()) {
+            webView.goBack();
+        }
+        loadUrl();
+    }
 
 }

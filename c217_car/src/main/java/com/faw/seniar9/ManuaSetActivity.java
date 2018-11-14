@@ -68,8 +68,11 @@ public class ManuaSetActivity extends Activity {
 
     public static boolean isUpload = false;
 
+    public enum MACHINE_STATE {
+        NORMAL, FINISH, DOWN_LOADING
+    }
 
-    public static boolean isZipUtilUI = false;  //是否解压过
+    public static MACHINE_STATE DOWNLOAD_STATE = MACHINE_STATE.NORMAL;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -317,8 +320,10 @@ public class ManuaSetActivity extends Activity {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 /** 回退键 事件处理 优先级:视频播放全屏-网页回退-关闭页面 */
+                if (!(ManuaSetActivity.DOWNLOAD_STATE == ManuaSetActivity.MACHINE_STATE.DOWN_LOADING)) {
+                    finish();
+                }
 
-                finish();
                 return true;
             default:
                 return super.onKeyUp(keyCode, event);
@@ -383,17 +388,18 @@ public class ManuaSetActivity extends Activity {
                         if (!saveFile.exists()) {
                             return;
                         }
-                        if (isZipUtilUI) {
+                        if (DOWNLOAD_STATE == MACHINE_STATE.FINISH) {
                             return;
                         }
                         try {
+                            ManuaSetActivity.DOWNLOAD_STATE = ManuaSetActivity.MACHINE_STATE.DOWN_LOADING;
                             ManualWebActivity.unZipFiles(saveFile, LibIOUtil.getDefaultPath(context));
                             ((Activity) context).runOnUiThread(new Runnable() {
 
                                 @Override
                                 public void run() {
                                     // TODO Auto-generated method stub
-                                    isZipUtilUI = true;
+                                    DOWNLOAD_STATE = MACHINE_STATE.FINISH;
                                     downLoad_progress.setProgress(100);
                                     progress_text.setText("100");
                                     downLoad_view.setVisibility(View.GONE);
