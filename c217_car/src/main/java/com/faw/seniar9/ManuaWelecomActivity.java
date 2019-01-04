@@ -62,9 +62,9 @@ public class ManuaWelecomActivity extends BaseActivity {
             @Override
             public void run() {
                 super.run();
-                String result = GetPostUrl.get("http://www.haoweisys.com/c217_admin/index.php/home/index/get_new_version/car_series/C217/car_type/1");
+                String result = GetPostUrl.get("http://www.e-guides.faw.cn/ev_admin/index.php?m=home&c=index&a=get_new_version&car_type=1");
                 LogUtil.logError("result = " + result);
-//                SharedpreferencesUtil.setVersion(ManuaWelecomActivity.this, result);
+                SharedpreferencesUtil.setVersion(ManuaWelecomActivity.this, result);
                 ManuaConfig.VERSION = result;
             }
         }.start();

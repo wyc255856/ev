@@ -167,6 +167,7 @@ public class ManualWebActivity extends Activity {
 //                view.loadUrl(BrowserJsInject.fullScreenByJs(url));
 //                TextView tv= (TextView) findViewById(R.id.text);
 //                tv.setText("加载完成");
+                webView.loadUrl("javascript:itemLoaderHide()");
                 if (isError) {
 
                     if (webView.getUrl().equals(ManuaConfig.getManuaUrl(ManualWebActivity.this) + "?upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(context)) ? "0" : "1"))) {
@@ -301,7 +302,7 @@ public class ManualWebActivity extends Activity {
             webView.loadUrl(ManuaConfig.getManuaUrl(context) + "?upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(this)) ? "0" : "1"));
 //            webView.loadUrl("http://www.haoweisys.com/C217/C217_1");
         }
-//        webView.loadUrl("http://www.haoweisys.com/CarH5/"+"?upLoad=1");
+//        webView.loadUrl("http://www.haoweisys.com/EVTEST/EVTEST_1/"+"?upLoad=1");
     }
 
 

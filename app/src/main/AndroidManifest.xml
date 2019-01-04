@@ -73,13 +73,7 @@
             android:name="com.faw.seniar9.ManuaSetActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="landscape"></activity>
-        <activity
-            android:name="com.faw.seniar9.ManualWebActivity"
-            android:configChanges="screenSize|keyboardHidden|orientation"
-            android:screenOrientation="landscape">
 
-
-        </activity>
         <activity
             android:name="com.faw.seniar9.ManuaPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -87,6 +81,13 @@
 
         </activity>
 
+
+
+        <activity
+            android:name="com.faw.seniar9.ManualWebActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation"
+            android:screenOrientation="landscape">
+        </activity>
         <!--<service android:name="com.baidu.che.codriversdk.PlatformService"></service>-->
 
         <receiver

@@ -164,7 +164,7 @@ public class ManuaSetActivity extends Activity {
 
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-
+                webView.loadUrl("javascript:itemLoaderHide()");
 //                if (isError) {
 //                    error_view.setVisibility(View.VISIBLE);
 //                    error_alert.setVisibility(View.VISIBLE);

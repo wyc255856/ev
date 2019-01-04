@@ -47,7 +47,7 @@ public class ManuaPlayerActivity extends BaseActivity {
             showLoadingDialog();
         }
         //本地的视频  需要在手机SD卡根目录添加一个 fl1234.mp4 视频
-        String url = getIntent().getStringExtra("url");
+        String url = getIntent().getStringExtra("url")+"";
         //网络视频
         Uri uri = Uri.parse(url);
         videoView = (fullScreen) this.findViewById(R.id.videoView);

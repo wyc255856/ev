@@ -155,7 +155,7 @@ public class NativeInterface {
         ManualWebActivity.context.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
+                Toast.makeText(ManualWebActivity.context, "执行到了goBack  ", Toast.LENGTH_SHORT).show();
                 if (getTopActivity(ManualWebActivity.context).toString().contains("ManuaSetActivity")) {
                     LogUtil.logError("=======goBack========" + "finish1");
                     if (ManuaSetActivity.DOWNLOAD_STATE == ManuaSetActivity.MACHINE_STATE.DOWN_LOADING) {
@@ -203,20 +203,20 @@ public class NativeInterface {
 
     @JavascriptInterface
     public String exitApp() {
-        LogUtil.logError("=======exitApp========" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context));
-//        ManualWebActivity.context.runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Intent intent = new Intent();
-//// 为Intent设置Action、Category属性
-//                intent.setAction(Intent.ACTION_MAIN);// "android.intent.action.MAIN"
-//                intent.addCategory(Intent.CATEGORY_HOME); //"android.intent.category.HOME"
-//                ManualWebActivity.context.startActivity(intent);
-//            }
-//        });
-        ManualWebActivity.context.finish();
+        LogUtil.logError("=======getMode========" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context));
+        ManualWebActivity.context.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent();
+// 为Intent设置Action、Category属性
+                intent.setAction(Intent.ACTION_MAIN);// "android.intent.action.MAIN"
+                intent.addCategory(Intent.CATEGORY_HOME); //"android.intent.category.HOME"
+                ManualWebActivity.context.startActivity(intent);
+            }
+        });
         return SharedpreferencesUtil.getCarMode(ManualWebActivity.context);
     }
+
 
     private static ComponentName getTopActivity(Context context) {
         ActivityManager activityManager = (ActivityManager) context.getSystemService(Service.ACTIVITY_SERVICE);

@@ -8,8 +8,8 @@ import android.content.Context;
 
 public class ManuaConfig {
     public static String VERSION = "1.0.0";
-    public static String BASE_URL = "http://www.haoweisys.com/EV/";
-
+    //    public static String BASE_URL = "http://www.haoweisys.com/EV/";
+    public static String BASE_URL = "http://www.e-guides.faw.cn/EV/";
 
     public static String T086_BASE_URL = BASE_URL + "/car_engine_H5/";
     public static String H5_BASE_URL = BASE_URL + "/car_engine_H5/";
@@ -32,6 +32,7 @@ public class ManuaConfig {
 
         return ManuaConfig.BASE_URL + SharedpreferencesUtil.getCarModel(context) + ".zip";
     }
+
     public static String getManuaUpDataUrl(Context context) {
 
         return ManuaConfig.BASE_URL + SharedpreferencesUtil.getCarModel(context) + "A.zip";

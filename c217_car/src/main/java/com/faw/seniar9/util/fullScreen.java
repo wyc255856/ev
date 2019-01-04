@@ -2,7 +2,7 @@ package com.faw.seniar9.util;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.VideoView;
+    import android.widget.VideoView;
 
 /**
  * Created by wyc on 2018/6/15.
