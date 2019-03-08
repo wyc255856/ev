@@ -20,7 +20,7 @@ import com.wyc.c217_car.R;
  * 基类Activity
  */
 
-public class BaseActivity extends Activity {
+public class EVBaseActivity extends Activity {
 
     protected Context mContext;
     protected LinearLayout mLLContent;

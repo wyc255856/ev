@@ -6,8 +6,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
-import com.faw.seniar9.util.ManuaConfig;
-import com.faw.seniar9.util.SharedpreferencesUtil;
+import com.faw.seniar9.util.EVManuaConfig;
+import com.faw.seniar9.util.EVSharedpreferencesUtil;
 import com.gh1.ghdownload.DownloadManager;
 
 
@@ -15,41 +15,41 @@ import com.gh1.ghdownload.DownloadManager;
  * Created by wyc on 18/3/23.
  */
 
-public class ManuaApi {
+public class EVManuaApi {
     public static int CAR_MODE = 1;
-    static ManuaApi mInstance;
+    static EVManuaApi mInstance;
     static final Object mInstanceSync = new Object();// 同步
 
     // 对外api
-    static public ManuaApi getInstance() {
+    static public EVManuaApi getInstance() {
 
         synchronized (mInstanceSync) {
             if (mInstance != null) {
                 return mInstance;
             }
 
-            mInstance = new ManuaApi();
+            mInstance = new EVManuaApi();
 
         }
         return mInstance;
     }
 
-    public void initManuaApi(int car_mode) {
-        ManuaApi.CAR_MODE = car_mode;
+    public void initEVManuaApi(int car_mode) {
+        EVManuaApi.CAR_MODE = car_mode;
 //        OkHttpFinalConfiguration.Builder builder = new OkHttpFinalConfiguration.Builder();
 //        OkHttpFinal.getInstance().init(builder.build());
     }
 
     public void manuaUpLoadZip(final Context context) {
 
-        String url = ManuaConfig.getManuaDownLoadUrl(context);
+        String url = EVManuaConfig.getManuaDownLoadUrl(context);
 
 //        Log.e("tag", "saveFile = " + saveFile);
         Log.e("tag", "url = " + url);
-        ManuaSetActivity.downLoad_view.setVisibility(View.VISIBLE);
+        EVManuaSetActivity.downLoad_view.setVisibility(View.VISIBLE);
 
-        DownloadManager.getInstance(context).add(ManuaSetActivity.entry);
-//        String url = ManuaConfig.getManuaDownLoadUrl(context);
+        DownloadManager.getInstance(context).add(EVManuaSetActivity.entry);
+//        String url = EVManuaConfig.getManuaDownLoadUrl(context);
 //        final File saveFile = new File(LibIOUtil.getDefaultUploadZipPath(context));
 //        Log.e("tag", "saveFile = " + saveFile);
 //        Log.e("tag", "url = " + url);
@@ -58,7 +58,7 @@ public class ManuaApi {
 //            @Override
 //            public void onStart() {
 //                super.onStart();
-//                ManuaSetActivity.downLoad_view.setVisibility(View.VISIBLE);
+//                EVManuaSetActivity.downLoad_view.setVisibility(View.VISIBLE);
 //            }
 //
 //            //下载进度
@@ -66,11 +66,11 @@ public class ManuaApi {
 //            public void onProgress(int progress, long networkSpeed) {
 //                super.onProgress(progress, networkSpeed);
 //                if (progress == 100) {
-//                    ManuaSetActivity.downLoad_progress.setProgress(99);
-//                    ManuaSetActivity.progress_text.setText("99%");
+//                    EVManuaSetActivity.downLoad_progress.setProgress(99);
+//                    EVManuaSetActivity.progress_text.setText("99%");
 //                } else {
-//                    ManuaSetActivity.downLoad_progress.setProgress(progress);
-//                    ManuaSetActivity.progress_text.setText(progress + "%");
+//                    EVManuaSetActivity.downLoad_progress.setProgress(progress);
+//                    EVManuaSetActivity.progress_text.setText(progress + "%");
 //                }
 //                //String speed = FileUtils.generateFileSize(networkSpeed);
 //            }
@@ -79,9 +79,9 @@ public class ManuaApi {
 //            @Override
 //            public void onFailure() {
 //                super.onFailure();
-//                ManuaSetActivity.downLoad_progress.setProgress(0);
-//                ManuaSetActivity.progress_text.setText("0%");
-//                ManuaSetActivity.downLoad_view.setVisibility(View.GONE);
+//                EVManuaSetActivity.downLoad_progress.setProgress(0);
+//                EVManuaSetActivity.progress_text.setText("0%");
+//                EVManuaSetActivity.downLoad_view.setVisibility(View.GONE);
 //                Toast.makeText(context, "下载失败", Toast.LENGTH_SHORT).show();
 //            }
 //
@@ -89,16 +89,16 @@ public class ManuaApi {
 //            @Override
 //            public void onDone() {
 //                super.onDone();
-//                ManuaSetActivity.downLoad_progress.setProgress(99);
+//                EVManuaSetActivity.downLoad_progress.setProgress(99);
 //                new Thread(new Runnable() {
 //                    @Override
 //                    public void run() {
-//                        if (SharedpreferencesUtil.getIsFirst(ManualWebActivity.context)) {
-//                            FireUtil.isExist(ManualWebActivity.context);
+//                        if (EVSharedpreferencesUtil.getIsFirst(EVManualWebActivity.context)) {
+//                            FireUtil.isExist(EVManualWebActivity.context);
 //                        }
 //
 ////                        try {
-////                            ManualWebActivity.unZipFiles(LibIOUtil.getDefaultUploadZipPath(context),LibIOUtil.getDefaultPath(context));
+////                            EVManualWebActivity.unZipFiles(LibIOUtil.getDefaultUploadZipPath(context),LibIOUtil.getDefaultPath(context));
 ////                        } catch (IOException e) {
 ////                            e.printStackTrace();
 ////                        }
@@ -110,18 +110,18 @@ public class ManuaApi {
 //                            @Override
 //                            public void run() {
 //
-//                                ManualWebActivity.downLoad_progress.setProgress(100);
-//                                ManualWebActivity.progress_text.setText("100%");
-//                                ManualWebActivity.downLoad_view.setVisibility(View.GONE);
-//                                SharedpreferencesUtil.setHaveLocal(ManualWebActivity.context, "1");
-//                                SharedpreferencesUtil.setModelLocal(context, SharedpreferencesUtil.getCarModel(context));
-//                                SharedpreferencesUtil.setCarMode(context, "0");
-//                                SharedpreferencesUtil.setVersion(context, ManuaConfig.VERSION);
+//                                EVManualWebActivity.downLoad_progress.setProgress(100);
+//                                EVManualWebActivity.progress_text.setText("100%");
+//                                EVManualWebActivity.downLoad_view.setVisibility(View.GONE);
+//                                EVSharedpreferencesUtil.setHaveLocal(EVManualWebActivity.context, "1");
+//                                EVSharedpreferencesUtil.setModelLocal(context, EVSharedpreferencesUtil.getCarModel(context));
+//                                EVSharedpreferencesUtil.setCarMode(context, "0");
+//                                EVSharedpreferencesUtil.setVersion(context, EVManuaConfig.VERSION);
 //                                saveFile.delete();
-//                                Intent intent = new Intent(ManuaSetActivity.context, ManualWebActivity.class);
+//                                Intent intent = new Intent(EVManuaSetActivity.context, EVManualWebActivity.class);
 //                                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                                ManuaSetActivity.context.startActivity(intent);
-//                                ManuaSetActivity.context.finish();
+//                                EVManuaSetActivity.context.startActivity(intent);
+//                                EVManuaSetActivity.context.finish();
 //                                Toast.makeText(context, "下载成功", Toast.LENGTH_SHORT).show();
 //                            }
 //                        });
@@ -135,19 +135,19 @@ public class ManuaApi {
 
     public void manuaDownLoadZip(final Context context) {
 
-        String url = ManuaConfig.getManuaDownLoadUrl(context);
+        String url = EVManuaConfig.getManuaDownLoadUrl(context);
 
 //        Log.e("tag", "saveFile = " + saveFile);
         Log.e("tag", "url = " + url);
-        ManuaSetActivity.downLoad_view.setVisibility(View.VISIBLE);
+        EVManuaSetActivity.downLoad_view.setVisibility(View.VISIBLE);
 
-        DownloadManager.getInstance(context).add(ManuaSetActivity.entry);
+        DownloadManager.getInstance(context).add(EVManuaSetActivity.entry);
 //        HttpRequest.download(url, saveFile, new FileDownloadCallback() {
 //            //开始下载
 //            @Override
 //            public void onStart() {
 //                super.onStart();
-//                ManuaSetActivity.downLoad_view.setVisibility(View.VISIBLE);
+//                EVManuaSetActivity.downLoad_view.setVisibility(View.VISIBLE);
 //            }
 //
 //            //下载进度
@@ -155,11 +155,11 @@ public class ManuaApi {
 //            public void onProgress(int progress, long networkSpeed) {
 //                super.onProgress(progress, networkSpeed);
 //                if (progress == 100) {
-//                    ManuaSetActivity.downLoad_progress.setProgress(99);
-//                    ManuaSetActivity.progress_text.setText("99%");
+//                    EVManuaSetActivity.downLoad_progress.setProgress(99);
+//                    EVManuaSetActivity.progress_text.setText("99%");
 //                } else {
-//                    ManuaSetActivity.downLoad_progress.setProgress(progress);
-//                    ManuaSetActivity.progress_text.setText(progress + "%");
+//                    EVManuaSetActivity.downLoad_progress.setProgress(progress);
+//                    EVManuaSetActivity.progress_text.setText(progress + "%");
 //                }
 //                //String speed = FileUtils.generateFileSize(networkSpeed);
 //            }
@@ -168,9 +168,9 @@ public class ManuaApi {
 //            @Override
 //            public void onFailure() {
 //                super.onFailure();
-//                ManuaSetActivity.downLoad_progress.setProgress(0);
-//                ManuaSetActivity.progress_text.setText("0%");
-//                ManuaSetActivity.downLoad_view.setVisibility(View.GONE);
+//                EVManuaSetActivity.downLoad_progress.setProgress(0);
+//                EVManuaSetActivity.progress_text.setText("0%");
+//                EVManuaSetActivity.downLoad_view.setVisibility(View.GONE);
 //                Toast.makeText(context, "下载失败", Toast.LENGTH_SHORT).show();
 //            }
 //
@@ -178,12 +178,12 @@ public class ManuaApi {
 //            @Override
 //            public void onDone() {
 //                super.onDone();
-//                ManuaSetActivity.downLoad_progress.setProgress(99);
+//                EVManuaSetActivity.downLoad_progress.setProgress(99);
 //                new Thread(new Runnable() {
 //                    @Override
 //                    public void run() {
 ////                        try {
-////                            ManualWebActivity.unZipFiles(LibIOUtil.getDefaultUploadZipPath(context),LibIOUtil.getDefaultPath(context));
+////                            EVManualWebActivity.unZipFiles(LibIOUtil.getDefaultUploadZipPath(context),LibIOUtil.getDefaultPath(context));
 ////                        } catch (IOException e) {
 ////                            e.printStackTrace();
 ////                        }
@@ -193,18 +193,18 @@ public class ManuaApi {
 //                            @Override
 //                            public void run() {
 //                                // TODO Auto-generated method stub
-//                                ManualWebActivity.downLoad_progress.setProgress(100);
-//                                ManualWebActivity.progress_text.setText("100%");
-//                                ManualWebActivity.downLoad_view.setVisibility(View.GONE);
-//                                SharedpreferencesUtil.setHaveLocal(ManualWebActivity.context, "1");
-//                                SharedpreferencesUtil.setModelLocal(context, SharedpreferencesUtil.getCarModel(context));
-//                                SharedpreferencesUtil.setCarMode(context, "0");
-//                                SharedpreferencesUtil.setVersion(context, ManuaConfig.VERSION);
+//                                EVManualWebActivity.downLoad_progress.setProgress(100);
+//                                EVManualWebActivity.progress_text.setText("100%");
+//                                EVManualWebActivity.downLoad_view.setVisibility(View.GONE);
+//                                EVSharedpreferencesUtil.setHaveLocal(EVManualWebActivity.context, "1");
+//                                EVSharedpreferencesUtil.setModelLocal(context, EVSharedpreferencesUtil.getCarModel(context));
+//                                EVSharedpreferencesUtil.setCarMode(context, "0");
+//                                EVSharedpreferencesUtil.setVersion(context, EVManuaConfig.VERSION);
 //                                saveFile.delete();
-//                                Intent intent = new Intent(ManuaSetActivity.context, ManualWebActivity.class);
+//                                Intent intent = new Intent(EVManuaSetActivity.context, EVManualWebActivity.class);
 //                                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                                ManuaSetActivity.context.startActivity(intent);
-//                                ManuaSetActivity.context.finish();
+//                                EVManuaSetActivity.context.startActivity(intent);
+//                                EVManuaSetActivity.context.finish();
 //                                Toast.makeText(context, "下载成功", Toast.LENGTH_SHORT).show();
 //                            }
 //                        });
@@ -218,12 +218,12 @@ public class ManuaApi {
     public void openManua(Context context, String carModel) {
 
         if (TextUtils.isEmpty(carModel)) {
-            SharedpreferencesUtil.setGuest(context, true);
+            EVSharedpreferencesUtil.setGuest(context, true);
             carModel="EV_1";
         }else {
-            SharedpreferencesUtil.setGuest(context, false);
+            EVSharedpreferencesUtil.setGuest(context, false);
         }
-        Intent intent = new Intent(context, ManuaWelecomActivity.class);
+        Intent intent = new Intent(context, EVManuaWelecomActivity.class);
         intent.putExtra("carModel", carModel);
         context.startActivity(intent);
     }

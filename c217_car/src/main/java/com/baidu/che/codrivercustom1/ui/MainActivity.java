@@ -14,9 +14,9 @@ import com.baidu.che.codrivercustom1.widget.FuncButton;
 import com.baidu.che.codriversdk.manager.CdAsrManager;
 import com.baidu.che.codriversdk.manager.CdCarInfoQueryManager;
 import com.baidu.che.codriversdk.manager.CdConfigManager;
-import com.faw.seniar9.ManualWebActivity;
+import com.faw.seniar9.EVManualWebActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends EVBaseActivity {
     private static final String TAG = "MainActivity";
 
     @Override
@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity {
                     public boolean answerContent(String feature, String extra) {
                         ToastUtils.show("1234567"+feature + extra);
                         Log.e("tag","------"+feature + extra);
-                        startActivity(new Intent(MainActivity.this, ManualWebActivity.class));
+                        startActivity(new Intent(MainActivity.this, EVManualWebActivity.class));
                         return false;
                     }
                 });

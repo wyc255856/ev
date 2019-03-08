@@ -25,9 +25,9 @@ import android.widget.Toast;
 import com.baidu.che.codriversdk.manager.CdCarInfoQueryManager;
 import com.faw.seniar9.util.LibIOUtil;
 import com.faw.seniar9.util.LogUtil;
-import com.faw.seniar9.util.ManuaConfig;
+import com.faw.seniar9.util.EVManuaConfig;
 import com.faw.seniar9.util.NativeInterface;
-import com.faw.seniar9.util.SharedpreferencesUtil;
+import com.faw.seniar9.util.EVSharedpreferencesUtil;
 import com.wyc.c217_car.R;
 
 import org.apache.tools.zip.ZipEntry;
@@ -45,7 +45,7 @@ import java.util.Enumeration;
  * Created by zhangsan on 2018/2/11.
  */
 
-public class ManualWebActivity extends Activity {
+public class EVManualWebActivity extends Activity {
     public static WebView webView;
     public static Activity context;
 
@@ -89,10 +89,10 @@ public class ManualWebActivity extends Activity {
         //隐藏标题栏
 //        ActionBar actionBar = getSupportActionBar();
 //        actionBar.hide();
-        setContentView(R.layout.activity_m_web);
+        setContentView(R.layout.ev_activity_m_web);
 //        LogUtil.logError("============isServiceRunning==============");
 //        Intent i = new Intent();
-//        i.setClass(this, TargetService.class);
+//        i.setClass(this, EVTargetService.class);
 //        startService(i);
 
 
@@ -123,10 +123,10 @@ public class ManualWebActivity extends Activity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(ManualWebActivity.context, ManuaSetActivity.class);
+                        Intent intent = new Intent(EVManualWebActivity.context, EVManuaSetActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        intent.putExtra("url", ManuaConfig.getManuaUrl(ManualWebActivity.context) + "/pages/voiceSearch.html?model=EV&car_version=" + SharedpreferencesUtil.getCarModel(context) + "&keyWord=" + feature.replaceAll(" ", ","));
-                        ManualWebActivity.context.startActivity(intent);
+                        intent.putExtra("url", EVManuaConfig.getManuaUrl(EVManualWebActivity.context) + "/pages/voiceSearch.html?model=EV&car_version=" + EVSharedpreferencesUtil.getCarModel(context) + "&keyWord=" + feature.replaceAll(" ", ","));
+                        EVManualWebActivity.context.startActivity(intent);
 
                     }
                 });
@@ -149,7 +149,7 @@ public class ManualWebActivity extends Activity {
                 super.onReceivedError(view, request, error);
                 isError = true;
                 if (isError) {
-                    if (webView.getUrl().equals(ManuaConfig.getManuaUrl(ManualWebActivity.this) + "?upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(context)) ? "0" : "1"))) {
+                    if (webView.getUrl().equals(EVManuaConfig.getManuaUrl(EVManualWebActivity.this) + "?upLoad=" + (EVManuaConfig.VERSION.equals(EVSharedpreferencesUtil.getVersion(context)) ? "0" : "1"))) {
                         error_view.setVisibility(View.VISIBLE);
                         error_alert.setVisibility(View.VISIBLE);
                         webView.setEnabled(true);// 当加载网页的时候将网页进行隐藏
@@ -170,7 +170,7 @@ public class ManualWebActivity extends Activity {
                 webView.loadUrl("javascript:itemLoaderHide()");
                 if (isError) {
 
-                    if (webView.getUrl().equals(ManuaConfig.getManuaUrl(ManualWebActivity.this) + "?upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(context)) ? "0" : "1"))) {
+                    if (webView.getUrl().equals(EVManuaConfig.getManuaUrl(EVManualWebActivity.this) + "?upLoad=" + (EVManuaConfig.VERSION.equals(EVSharedpreferencesUtil.getVersion(context)) ? "0" : "1"))) {
                         error_view.setVisibility(View.VISIBLE);
                         error_alert.setVisibility(View.VISIBLE);
                         webView.setEnabled(true);// 当加载网页的时候将网页进行隐藏
@@ -183,33 +183,33 @@ public class ManualWebActivity extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 LogUtil.logError("url = " + url);
-                LogUtil.logError("url = " + ManuaConfig.getManuaUrl(ManualWebActivity.this));
+                LogUtil.logError("url = " + EVManuaConfig.getManuaUrl(EVManualWebActivity.this));
                 if (url != null) {
                     if (!url.contains("mp4")) {
                         LogUtil.logError("url = vr");
                         webView.setLayerType(View.LAYER_TYPE_NONE, null);
-                        webView.setBackgroundResource(R.mipmap.manua_vr_bg);
+                        webView.setBackgroundResource(R.mipmap.ev_manua_vr_bg);
                     } else {
                         LogUtil.logError("url = LAYER_TYPE_HARDWARE");
                         webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-                        webView.setBackgroundResource(R.mipmap.m_home_bg);
+                        webView.setBackgroundResource(R.mipmap.ev_m_home_bg);
                     }
                 }
                 if (Build.VERSION.SDK_INT < 26) {
                     view.loadUrl(url);
                     return true;
                 }
-//                if ("0".equals(SharedpreferencesUtil.getCarMode(ManualWebActivity.this))) {
-//                    LogUtil.logError("ManuaConfig.getManuaUrl(context) = " + ManuaConfig.getManuaUrl(context));
+//                if ("0".equals(EVSharedpreferencesUtil.getCarMode(EVManualWebActivity.this))) {
+//                    LogUtil.logError("EVManuaConfig.getManuaUrl(context) = " + EVManuaConfig.getManuaUrl(context));
 //                    view.loadUrl("file:///"+ LibIOUtil.getDefaultPath(context)+"C217_1");
 //                } else {
-//                    LogUtil.logError("ManuaConfig.getManuaUrl(context) = " + ManuaConfig.getManuaUrl(context));
-//                    view.loadUrl(ManuaConfig.getManuaUrl(context));
+//                    LogUtil.logError("EVManuaConfig.getManuaUrl(context) = " + EVManuaConfig.getManuaUrl(context));
+//                    view.loadUrl(EVManuaConfig.getManuaUrl(context));
 ////            webView.loadUrl("http://www.haoweisys.com/C217/C217_1");
 //                }
                 LogUtil.logError("url = " + url);
-                LogUtil.logError("url = " + ManuaConfig.getManuaUrl(ManualWebActivity.this));
-//                if (url.equals(ManuaConfig.getManuaUrl(ManualWebActivity.this) + "/") || url.equals("file:///storage/emulated/0/manua/com.wyc.zhangsan.htmlapi/C217_1/index.html")) {
+                LogUtil.logError("url = " + EVManuaConfig.getManuaUrl(EVManualWebActivity.this));
+//                if (url.equals(EVManuaConfig.getManuaUrl(EVManualWebActivity.this) + "/") || url.equals("file:///storage/emulated/0/manua/com.wyc.zhangsan.htmlapi/C217_1/index.html")) {
 //                    findViewById(R.id.back_icon).setVisibility(View.GONE);
 //                } else {
 //                    findViewById(R.id.back_icon).setVisibility(View.VISIBLE);
@@ -220,7 +220,7 @@ public class ManualWebActivity extends Activity {
         //支持App内部javascript交互
         webView.getSettings().setJavaScriptEnabled(true);
         //自适应屏幕
-        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webView.getSettings().setLoadWithOverviewMode(true);
         //设置可以支持缩放
         webView.getSettings().setSupportZoom(true);
@@ -254,7 +254,7 @@ public class ManualWebActivity extends Activity {
 // 为Intent设置Action、Category属性
                 intent.setAction(Intent.ACTION_MAIN);// "android.intent.action.MAIN"
                 intent.addCategory(Intent.CATEGORY_HOME); //"android.intent.category.HOME"
-                ManualWebActivity.context.startActivity(intent);
+                EVManualWebActivity.context.startActivity(intent);
             }
         });
         findViewById(R.id.reload_btn).setOnClickListener(new View.OnClickListener() {
@@ -293,13 +293,13 @@ public class ManualWebActivity extends Activity {
     private void loadUrl() {
 //        webView.loadUrl("file:///android_asset/index.html");
 
-        if ("0".equals(SharedpreferencesUtil.getCarMode(this))) {
-            LogUtil.logError("ManuaConfig.getManuaUrl(context) = " + "file://" + LibIOUtil.getDefaultPath(context) + SharedpreferencesUtil.getModelLocal(ManualWebActivity.this) + "/index.html" + "?upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(this)) ? "0" : "1"));
-            webView.loadUrl("file://" + LibIOUtil.getDefaultPath(context) + SharedpreferencesUtil.getModelLocal(ManualWebActivity.this) + "/index.html" + "?upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(this)) ? "0" : "1"));
+        if ("0".equals(EVSharedpreferencesUtil.getCarMode(this))) {
+            LogUtil.logError("EVManuaConfig.getManuaUrl(context) = " + "file://" + LibIOUtil.getDefaultPath(context) + EVSharedpreferencesUtil.getModelLocal(EVManualWebActivity.this) + "/index.html" + "?upLoad=" + (EVManuaConfig.VERSION.equals(EVSharedpreferencesUtil.getVersion(this)) ? "0" : "1"));
+            webView.loadUrl("file://" + LibIOUtil.getDefaultPath(context) + EVSharedpreferencesUtil.getModelLocal(EVManualWebActivity.this) + "/index.html" + "?upLoad=" + (EVManuaConfig.VERSION.equals(EVSharedpreferencesUtil.getVersion(this)) ? "0" : "1"));
         } else {
-            LogUtil.logError("ManuaConfig.getManuaUrl(context) = " + ManuaConfig.getManuaUrl(context));
+            LogUtil.logError("EVManuaConfig.getManuaUrl(context) = " + EVManuaConfig.getManuaUrl(context));
 //            webView.loadUrl("file://" + LibIOUtil.getDefaultPath(context) + "C217_1/index.html");
-            webView.loadUrl(ManuaConfig.getManuaUrl(context) + "?upLoad=" + (ManuaConfig.VERSION.equals(SharedpreferencesUtil.getVersion(this)) ? "0" : "1"));
+            webView.loadUrl(EVManuaConfig.getManuaUrl(context) + "?upLoad=" + (EVManuaConfig.VERSION.equals(EVSharedpreferencesUtil.getVersion(this)) ? "0" : "1"));
 //            webView.loadUrl("http://www.haoweisys.com/C217/C217_1");
         }
 //        webView.loadUrl("http://www.haoweisys.com/EVTEST/EVTEST_1/"+"?upLoad=1");
@@ -311,11 +311,11 @@ public class ManualWebActivity extends Activity {
 
         if (keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {
-//            ManualWebActivity.webView.loadUrl("javascript:closeLocalStorage()");
+//            EVManualWebActivity.webView.loadUrl("javascript:closeLocalStorage()");
             if (webView.canGoBack()) {
                 error_view.setVisibility(View.GONE);
                 LogUtil.logError("===============");
-                ManualWebActivity.webView.loadUrl("javascript:closeLocalStorage()");
+                EVManualWebActivity.webView.loadUrl("javascript:closeLocalStorage()");
                 webView.goBack(); // 后退
 //                if (webView.canGoBack()) {
 //                    findViewById(R.id.back_icon).setVisibility(View.VISIBLE);
@@ -334,7 +334,7 @@ public class ManualWebActivity extends Activity {
 
     protected void exit() {
         if (isExit) {
-            ManualWebActivity.webView.loadUrl("javascript:RemoveLocalStorage()");
+            EVManualWebActivity.webView.loadUrl("javascript:RemoveLocalStorage()");
             finish();
             System.exit(0);
         } else {
@@ -400,12 +400,12 @@ public class ManualWebActivity extends Activity {
             }
             //输出文件路径信息
 //            System.out.println(outPath);
-            ManuaSetActivity.context.runOnUiThread(new Runnable() {
+            EVManuaSetActivity.context.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ManuaSetActivity.download_text.setTextSize(9f);
-                    if (ManuaSetActivity.download_text != null)
-                        ManuaSetActivity.download_text.setText("正在解压：" + outPath);
+                    EVManuaSetActivity.download_text.setTextSize(9f);
+                    if (EVManuaSetActivity.download_text != null)
+                        EVManuaSetActivity.download_text.setText("正在解压：" + outPath);
                 }
             });
             OutputStream out = new FileOutputStream(outPath);
@@ -431,10 +431,10 @@ public class ManualWebActivity extends Activity {
 //                LogUtil.logError("feature = " + feature);
 //                LogUtil.logError("extra = " + extra);
 //
-//                Intent intent = new Intent(ManualWebActivity.context, ManuaSetActivity.class);
+//                Intent intent = new Intent(EVManualWebActivity.context, EVManuaSetActivity.class);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                intent.putExtra("url", ManuaConfig.getManuaUrl(ManualWebActivity.context) + "/pages/voiceSearch.html?model=C217&car_version=" + SharedpreferencesUtil.getCarModel(context) + "&keyWord=" + feature.replaceAll(" ", ","));
-//                ManualWebActivity.context.startActivity(intent);
+//                intent.putExtra("url", EVManuaConfig.getManuaUrl(EVManualWebActivity.context) + "/pages/voiceSearch.html?model=C217&car_version=" + EVSharedpreferencesUtil.getCarModel(context) + "&keyWord=" + feature.replaceAll(" ", ","));
+//                EVManualWebActivity.context.startActivity(intent);
 //                return false;
 //            }
 //        });

@@ -18,7 +18,7 @@ public class DownloadZipAlert {
 
     public DownloadZipAlert(Context context) {
         LayoutInflater inflaterDl = LayoutInflater.from(context);
-        layout = (FrameLayout) inflaterDl.inflate(R.layout.m_alert_progress, null);
+        layout = (FrameLayout) inflaterDl.inflate(R.layout.ev_m_alert_progress, null);
         dialog = new AlertDialog.Builder(context).create();
     }
 

@@ -27,9 +27,9 @@ import android.widget.Toast;
 import com.faw.seniar9.util.FireUtil;
 import com.faw.seniar9.util.LibIOUtil;
 import com.faw.seniar9.util.LogUtil;
-import com.faw.seniar9.util.ManuaConfig;
+import com.faw.seniar9.util.EVManuaConfig;
 import com.faw.seniar9.util.NativeInterface;
-import com.faw.seniar9.util.SharedpreferencesUtil;
+import com.faw.seniar9.util.EVSharedpreferencesUtil;
 import com.gh1.ghdownload.DownloadConfig;
 import com.gh1.ghdownload.DownloadManager;
 import com.gh1.ghdownload.entity.DownloadEntry;
@@ -49,13 +49,13 @@ import java.nio.charset.Charset;
  * Created by wyc on 2018/4/23.
  */
 
-public class ManuaSetActivity extends Activity {
+public class EVManuaSetActivity extends Activity {
     public static WebView webView;
     public static Activity context;
     //    private View error_view;
     private View error_alert;
     boolean isError = false;
-    public static MyProgressView downLoad_progress;
+    public static EVMyProgressView downLoad_progress;
     public static TextView progress_text;
     public static TextView download_text;
 
@@ -93,8 +93,8 @@ public class ManuaSetActivity extends Activity {
 //        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.HONEYCOMB){
 //            webView.setLayerType(View.LAYER_TYPE_SOFTWARE,null);
 //        }
-        setContentView(R.layout.activity_m_web);
-        entry = new DownloadEntry(ManuaConfig.getManuaDownLoadUrl(this));
+        setContentView(R.layout.ev_activity_m_web);
+        entry = new DownloadEntry(EVManuaConfig.getManuaDownLoadUrl(this));
         DownloadConfig.DOWNLOAD_PATH = LibIOUtil.getDefaultPath(this);
 
         entry.name = LibIOUtil.UPLOAD_ZIP_FILE;
@@ -102,7 +102,7 @@ public class ManuaSetActivity extends Activity {
         webView = (WebView) findViewById(R.id.web_view);
         progress_text = (TextView) findViewById(R.id.progress_text);
         download_text = (TextView) findViewById(R.id.download_text);
-        downLoad_progress = (MyProgressView) findViewById(R.id.downLoad_progress);
+        downLoad_progress = (EVMyProgressView) findViewById(R.id.downLoad_progress);
         downLoad_view = findViewById(R.id.downLoad_view);
         error_alert = findViewById(R.id.error_alert);
         webView.getSettings().setAllowFileAccess(true);
@@ -112,7 +112,7 @@ public class ManuaSetActivity extends Activity {
 
             @Override
             public View getVideoLoadingProgressView() {
-                FrameLayout frameLayout = new FrameLayout(ManualWebActivity.context);
+                FrameLayout frameLayout = new FrameLayout(EVManualWebActivity.context);
                 frameLayout.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
                 return frameLayout;
             }
@@ -177,12 +177,12 @@ public class ManuaSetActivity extends Activity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
-//                if ("0".equals(SharedpreferencesUtil.getCarMode(ManualWebActivity.this))) {
-//                    LogUtil.logError("ManuaConfig.getManuaUrl(context) = " + ManuaConfig.getManuaUrl(context));
+//                if ("0".equals(EVSharedpreferencesUtil.getCarMode(EVManualWebActivity.this))) {
+//                    LogUtil.logError("EVManuaConfig.getManuaUrl(context) = " + EVManuaConfig.getManuaUrl(context));
 //                    view.loadUrl("file:///"+ LibIOUtil.getDefaultPath(context)+"C217_1");
 //                } else {
-//                    LogUtil.logError("ManuaConfig.getManuaUrl(context) = " + ManuaConfig.getManuaUrl(context));
-//                    view.loadUrl(ManuaConfig.getManuaUrl(context));
+//                    LogUtil.logError("EVManuaConfig.getManuaUrl(context) = " + EVManuaConfig.getManuaUrl(context));
+//                    view.loadUrl(EVManuaConfig.getManuaUrl(context));
 ////            webView.loadUrl("http://www.haoweisys.com/C217/C217_1");
 //                }
                 return true;
@@ -246,7 +246,7 @@ public class ManuaSetActivity extends Activity {
     private void loadUrl() {
         LogUtil.logError("url = " + url);
         webView.loadUrl(url);
-//        webView.loadUrl("http://www.haoweisys.com/C217Two/pages/set.html?model=" + SharedpreferencesUtil.getCarModel(ManualWebActivity.context) + "&mode=" + SharedpreferencesUtil.getCarMode(ManualWebActivity.context) + "&haveLocalPackage=" + SharedpreferencesUtil.getHaveLocal(ManualWebActivity.context)+"&upLoad=1"+"&version=v"+SharedpreferencesUtil.getVersion(this));
+//        webView.loadUrl("http://www.haoweisys.com/C217Two/pages/set.html?model=" + EVSharedpreferencesUtil.getCarModel(EVManualWebActivity.context) + "&mode=" + EVSharedpreferencesUtil.getCarMode(EVManualWebActivity.context) + "&haveLocalPackage=" + EVSharedpreferencesUtil.getHaveLocal(EVManualWebActivity.context)+"&upLoad=1"+"&version=v"+EVSharedpreferencesUtil.getVersion(this));
     }
 
 
@@ -320,7 +320,7 @@ public class ManuaSetActivity extends Activity {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 /** 回退键 事件处理 优先级:视频播放全屏-网页回退-关闭页面 */
-                if (!(ManuaSetActivity.DOWNLOAD_STATE == ManuaSetActivity.MACHINE_STATE.DOWN_LOADING)) {
+                if (!(EVManuaSetActivity.DOWNLOAD_STATE == EVManuaSetActivity.MACHINE_STATE.DOWN_LOADING)) {
                     finish();
                 }
 
@@ -368,20 +368,20 @@ public class ManuaSetActivity extends Activity {
 
         @Override
         public void onDataChanged(DownloadEntry data) {
-            ManuaSetActivity.entry = data;
+            EVManuaSetActivity.entry = data;
             download_text.setText("正在下载离线文件...");
             download_text.setTextSize(16f);
             Log.e("tag", "data.percent = " + data.percent);
             if (data.percent == 100) {
                 downLoad_progress.setProgress(99);
                 progress_text.setText("99");
-                ManuaSetActivity.saveFile = new File(LibIOUtil.getDefaultUploadZipPath(context));
-                //ManuaSetActivity.downLoad_progress.setProgress(99);
+                EVManuaSetActivity.saveFile = new File(LibIOUtil.getDefaultUploadZipPath(context));
+                //EVManuaSetActivity.downLoad_progress.setProgress(99);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
 //                        try {
-//                            ManualWebActivity.unZipFiles(LibIOUtil.getDefaultUploadZipPath(context),LibIOUtil.getDefaultPath(context));
+//                            EVManualWebActivity.unZipFiles(LibIOUtil.getDefaultUploadZipPath(context),LibIOUtil.getDefaultPath(context));
 //                        } catch (IOException e) {
 //                            e.printStackTrace();
 //                        }
@@ -392,8 +392,8 @@ public class ManuaSetActivity extends Activity {
                             return;
                         }
                         try {
-                            ManuaSetActivity.DOWNLOAD_STATE = ManuaSetActivity.MACHINE_STATE.DOWN_LOADING;
-                            ManualWebActivity.unZipFiles(saveFile, LibIOUtil.getDefaultPath(context));
+                            EVManuaSetActivity.DOWNLOAD_STATE = EVManuaSetActivity.MACHINE_STATE.DOWN_LOADING;
+                            EVManualWebActivity.unZipFiles(saveFile, LibIOUtil.getDefaultPath(context));
                             ((Activity) context).runOnUiThread(new Runnable() {
 
                                 @Override
@@ -403,17 +403,17 @@ public class ManuaSetActivity extends Activity {
                                     downLoad_progress.setProgress(100);
                                     progress_text.setText("100");
                                     downLoad_view.setVisibility(View.GONE);
-                                    SharedpreferencesUtil.setHaveLocal(ManualWebActivity.context, "1");
-                                    SharedpreferencesUtil.setModelLocal(context, SharedpreferencesUtil.getCarModel(context));
-                                    SharedpreferencesUtil.setCarMode(context, "0");
-                                    SharedpreferencesUtil.setVersion(context, ManuaConfig.VERSION);
+                                    EVSharedpreferencesUtil.setHaveLocal(EVManualWebActivity.context, "1");
+                                    EVSharedpreferencesUtil.setModelLocal(context, EVSharedpreferencesUtil.getCarModel(context));
+                                    EVSharedpreferencesUtil.setCarMode(context, "0");
+                                    EVSharedpreferencesUtil.setVersion(context, EVManuaConfig.VERSION);
                                     saveFile.delete();
-                                    Intent intent = new Intent(ManuaSetActivity.context, ManualWebActivity.class);
+                                    Intent intent = new Intent(EVManuaSetActivity.context, EVManualWebActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                    ManuaSetActivity.context.startActivity(intent);
-                                    ManuaSetActivity.context.finish();
+                                    EVManuaSetActivity.context.startActivity(intent);
+                                    EVManuaSetActivity.context.finish();
                                     Toast.makeText(context, "下载成功", Toast.LENGTH_SHORT).show();
-                                    SharedpreferencesUtil.setCarMode(context, "0");
+                                    EVSharedpreferencesUtil.setCarMode(context, "0");
                                 }
                             });
 
@@ -438,19 +438,19 @@ public class ManuaSetActivity extends Activity {
 
         @Override
         public void onDataChanged(DownloadEntry data) {
-            ManuaSetActivity.entry = data;
+            EVManuaSetActivity.entry = data;
             Log.e("tag", "data.percent = " + data.percent);
             if (data.percent == 100) {
                 downLoad_progress.setProgress(99);
                 progress_text.setText("99");
-                ManuaSetActivity.saveFile = new File(LibIOUtil.getDefaultUploadZipPath(context));
-                //ManuaSetActivity.downLoad_progress.setProgress(99);
+                EVManuaSetActivity.saveFile = new File(LibIOUtil.getDefaultUploadZipPath(context));
+                //EVManuaSetActivity.downLoad_progress.setProgress(99);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
 
 
-                        if (SharedpreferencesUtil.getIsFirst(context)) {
+                        if (EVSharedpreferencesUtil.getIsFirst(context)) {
                             FireUtil.isExist(context);
                         }
 
@@ -468,17 +468,17 @@ public class ManuaSetActivity extends Activity {
                                 downLoad_progress.setProgress(100);
                                 progress_text.setText("100");
                                 downLoad_view.setVisibility(View.GONE);
-                                SharedpreferencesUtil.setHaveLocal(ManualWebActivity.context, "1");
-                                SharedpreferencesUtil.setModelLocal(context, SharedpreferencesUtil.getCarModel(context));
-                                SharedpreferencesUtil.setCarMode(context, "0");
-                                SharedpreferencesUtil.setVersion(context, ManuaConfig.VERSION);
+                                EVSharedpreferencesUtil.setHaveLocal(EVManualWebActivity.context, "1");
+                                EVSharedpreferencesUtil.setModelLocal(context, EVSharedpreferencesUtil.getCarModel(context));
+                                EVSharedpreferencesUtil.setCarMode(context, "0");
+                                EVSharedpreferencesUtil.setVersion(context, EVManuaConfig.VERSION);
                                 saveFile.delete();
-                                Intent intent = new Intent(ManuaSetActivity.context, ManualWebActivity.class);
+                                Intent intent = new Intent(EVManuaSetActivity.context, EVManualWebActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                                ManuaSetActivity.context.startActivity(intent);
-                                ManuaSetActivity.context.finish();
+                                EVManuaSetActivity.context.startActivity(intent);
+                                EVManuaSetActivity.context.finish();
                                 Toast.makeText(context, "下载成功", Toast.LENGTH_SHORT).show();
-                                SharedpreferencesUtil.setCarMode(context, "0");
+                                EVSharedpreferencesUtil.setCarMode(context, "0");
                             }
                         });
                     }

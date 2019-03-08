@@ -18,8 +18,8 @@ import com.wyc.c217_car.R;
 /**
  * Created by admin on 2016/7/5.
  */
-public class MyProgressView extends View {
-    private static final String TAG = MyProgressView.class.getSimpleName();
+public class EVMyProgressView extends View {
+    private static final String TAG = EVMyProgressView.class.getSimpleName();
     private final int min_size=0;
     private int progress;//进度条的进度
     private int max;//进度条的最大值
@@ -32,18 +32,18 @@ public class MyProgressView extends View {
     private String prefixText = "";
     private String suffixText = "%";
     private final int default_max = 100;
-    public MyProgressView(Context context, AttributeSet attrs, int defStyle) {
+    public EVMyProgressView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MyCircleProgress, defStyle, 0);
         initByAttributes(attributes);
         attributes.recycle();
         initPainters();
     }
-    public MyProgressView(Context context, AttributeSet attrs) {
+    public EVMyProgressView(Context context, AttributeSet attrs) {
         this(context, attrs,0);
     }
 
-    public MyProgressView(Context context) {
+    public EVMyProgressView(Context context) {
         this(context,null);
     }
     /**

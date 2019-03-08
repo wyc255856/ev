@@ -16,7 +16,7 @@ import java.util.List;
  * 音乐模块
  */
 
-public class MusicActivity extends BaseActivity {
+public class MusicActivity extends EVBaseActivity {
 
     private String[] names = {"吻别", "红玫瑰", "十年", "笨小孩", "江南", "一千年以后", "老街", "成都", "朋友", "后来"};
     private String[] singers = {"张学友", "陈奕迅", "陈奕迅", "刘德华", "林俊杰", "林俊杰", "李荣浩", "赵雷", "周华健", "刘若英"};

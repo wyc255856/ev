@@ -58,7 +58,7 @@
         <!--</activity>-->
 
         <activity
-            android:name="com.faw.seniar9.ManuaWelecomActivity"
+            android:name="com.faw.seniar9.EVManuaWelecomActivity"
             android:resumeWhilePausing="true"
             android:screenOrientation="landscape"
             android:windowSoftInputMode="adjustPan">
@@ -66,16 +66,16 @@
         </activity>
 
         <activity
-            android:name="com.faw.seniar9.ManualSelecteCarActivity"
+            android:name="com.faw.seniar9.EVManualSelecteCarActivity"
             android:screenOrientation="landscape"></activity>
 
         <activity
-            android:name="com.faw.seniar9.ManuaSetActivity"
+            android:name="com.faw.seniar9.EVManuaSetActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="landscape"></activity>
 
         <activity
-            android:name="com.faw.seniar9.ManuaPlayerActivity"
+            android:name="com.faw.seniar9.EVManuaPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="landscape">
 
@@ -84,7 +84,7 @@
 
 
         <activity
-            android:name="com.faw.seniar9.ManualWebActivity"
+            android:name="com.faw.seniar9.EVManualWebActivity"
             android:configChanges="screenSize|keyboardHidden|orientation"
             android:screenOrientation="landscape">
         </activity>
@@ -125,10 +125,10 @@
 
         <!--</activity>-->
 
-        <!--<service android:name="com.faw.seniar9.TargetService"></service>-->
-        <!--<receiver android:name="com.faw.seniar9.PushReciver"></receiver>-->
+        <!--<service android:name="com.faw.seniar9.EVTargetService"></service>-->
+        <!--<receiver android:name="com.faw.seniar9.EVPushReciver"></receiver>-->
         <service android:name="com.gh1.ghdownload.core.DownloadService" />
-        <!--<receiver android:name="com.faw.seniar9.AppReceiver">-->
+        <!--<receiver android:name="com.faw.seniar9.EVAppReceiver">-->
         <!--<intent-filter>-->
         <!--&lt;!&ndash; 一个新应用包已经安装在设备上，数据包括包名（监听所在的app，新安装时，不能接收到这个广播） &ndash;&gt;-->
         <!--<action android:name="android.intent.action.PACKAGE_ADDED" />-->

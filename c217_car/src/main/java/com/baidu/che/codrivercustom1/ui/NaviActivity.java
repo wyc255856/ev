@@ -12,7 +12,7 @@ import com.baidu.che.codriversdk.manager.CdNaviManager;
  * 导航模块
  */
 
-public class NaviActivity extends BaseActivity {
+public class NaviActivity extends EVBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

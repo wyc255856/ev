@@ -14,7 +14,7 @@ import com.baidu.che.codriversdk.manager.CdAsrManager;
 /**
  * 语音识别管理类
  */
-public class AsrManagerActivity extends BaseActivity {
+public class AsrManagerActivity extends EVBaseActivity {
     private static final String TAG = "AsrManagerActivity";
     private EditText mEditText;
 

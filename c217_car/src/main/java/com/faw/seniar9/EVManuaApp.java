@@ -13,7 +13,7 @@ import com.faw.seniar9.util.LogUtil;
  * Created by wyc on 18/3/26.
  */
 
-public class ManuaApp extends Application {
+public class EVManuaApp extends Application {
     public static Context sContext;//全局的Context对象
     @Override
     public void onCreate() {

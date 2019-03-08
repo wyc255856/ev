@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.faw.seniar9.util.LibIOUtil;
-import com.faw.seniar9.util.ManuaConfig;
+import com.faw.seniar9.util.EVManuaConfig;
 import com.gh1.ghdownload.DownloadConfig;
 import com.gh1.ghdownload.DownloadManager;
 import com.gh1.ghdownload.entity.DownloadEntry;
@@ -48,7 +48,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.text_activity);
-//		entry = new DownloadEntry(ManuaConfig.getManuaDownLoadUrl(this));
+//		entry = new DownloadEntry(EVManuaConfig.getManuaDownLoadUrl(this));
 //		DownloadConfig.DOWNLOAD_PATH = LibIOUtil.getDefaultPath(this);
 //		entry.name = "x三国.apk";
 //

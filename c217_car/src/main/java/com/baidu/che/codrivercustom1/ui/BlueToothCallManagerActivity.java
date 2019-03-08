@@ -12,7 +12,7 @@ import com.baidu.che.codriversdk.manager.CdPhoneManager;
  * 蓝牙电话管理
  */
 
-public class BlueToothCallManagerActivity extends BaseActivity {
+public class BlueToothCallManagerActivity extends EVBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

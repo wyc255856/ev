@@ -37,8 +37,8 @@ public class MyProgressBar extends ImageView {
     public MyProgressBar(Context context, boolean isCreate) {
         super(context);
         init();
-        width = (int) getResources().getDimension(R.dimen.default_progress_bar_width);
-        height = (int) getResources().getDimension(R.dimen.default_progress_bar_height);
+        width = (int) getResources().getDimension(R.dimen.ev_default_progress_bar_width);
+        height = (int) getResources().getDimension(R.dimen.ev_default_progress_bar_height);
     }
 
     private void init() {
@@ -53,7 +53,7 @@ public class MyProgressBar extends ImageView {
         canvas.drawColor(Color.TRANSPARENT);
         defaultDrawable = this.getBackground();
         if (defaultDrawable == null)
-            defaultDrawable = getResources().getDrawable(R.mipmap.m_loading1);
+            defaultDrawable = getResources().getDrawable(R.mipmap.ev_m_loading1);
         if (width == 0)
             width = this.getWidth();
         if (height == 0)

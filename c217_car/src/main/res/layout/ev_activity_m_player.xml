@@ -26,6 +26,6 @@
         android:layout_height="50dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
-        android:src="@mipmap/manua_back" />
+        android:src="@mipmap/ev_manua_back" />
 
 </RelativeLayout>

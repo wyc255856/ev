@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="50dip"
     android:layout_height="50dip"
-    android:background="@drawable/m9_dialog_bg"
+    android:background="@drawable/ev_m9_dialog_bg"
     android:gravity="center"
     android:orientation="horizontal"
     android:padding="10dip" >
@@ -11,7 +11,7 @@
         android:id="@+id/progress_bar"
         android:layout_width="25dip"
         android:layout_height="25dip"
-        android:background="@mipmap/m_loading1"
+        android:background="@mipmap/ev_m_loading1"
         android:visibility="gone" />
 
     <!--

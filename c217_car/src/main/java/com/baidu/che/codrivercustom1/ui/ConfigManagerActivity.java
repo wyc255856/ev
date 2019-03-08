@@ -12,7 +12,7 @@ import com.baidu.che.codriversdk.manager.CdConfigManager;
  * 配置管理
  */
 
-public class ConfigManagerActivity extends BaseActivity {
+public class ConfigManagerActivity extends EVBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

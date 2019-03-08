@@ -6,7 +6,7 @@ import android.content.Context;
  * Created by wyc on 18/3/23.
  */
 
-public class ManuaConfig {
+public class EVManuaConfig {
     public static String VERSION = "1.0.0";
     //    public static String BASE_URL = "http://www.haoweisys.com/EV/";
     public static String BASE_URL = "http://www.e-guides.faw.cn/EV/";
@@ -19,22 +19,22 @@ public class ManuaConfig {
     public static int T086 = 2;
 
     public static String getManuaUrl(Context context) {
-//        if (ManuaApi.CAR_MODE == H5) {
+//        if (EVManuaApi.CAR_MODE == H5) {
 //            return H5_BASE_URL;
-//        } else if (ManuaApi.CAR_MODE == T086) {
+//        } else if (EVManuaApi.CAR_MODE == T086) {
 //            return T086_BASE_URL;
 //        } else {
-        return BASE_URL + SharedpreferencesUtil.getCarModel(context);
+        return BASE_URL + EVSharedpreferencesUtil.getCarModel(context);
 //        }
     }
 
     public static String getManuaDownLoadUrl(Context context) {
 
-        return ManuaConfig.BASE_URL + SharedpreferencesUtil.getCarModel(context) + ".zip";
+        return EVManuaConfig.BASE_URL + EVSharedpreferencesUtil.getCarModel(context) + ".zip";
     }
 
     public static String getManuaUpDataUrl(Context context) {
 
-        return ManuaConfig.BASE_URL + SharedpreferencesUtil.getCarModel(context) + "A.zip";
+        return EVManuaConfig.BASE_URL + EVSharedpreferencesUtil.getCarModel(context) + "A.zip";
     }
 }

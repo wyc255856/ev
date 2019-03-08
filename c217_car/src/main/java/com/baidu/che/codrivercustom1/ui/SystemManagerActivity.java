@@ -13,7 +13,7 @@ import com.baidu.che.codriversdk.manager.CdSystemManager;
  * 系统控制
  */
 
-public class SystemManagerActivity extends BaseActivity {
+public class SystemManagerActivity extends EVBaseActivity {
     private static final String TAG = "SystemManagerActivity";
 
     @Override

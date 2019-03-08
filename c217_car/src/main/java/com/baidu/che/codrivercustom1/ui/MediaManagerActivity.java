@@ -16,7 +16,7 @@ import com.baidu.che.codriversdk.manager.CdTTSPlayerManager;
  * 多媒体管理类
  */
 
-public class MediaManagerActivity extends BaseActivity {
+public class MediaManagerActivity extends EVBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

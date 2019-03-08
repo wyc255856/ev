@@ -15,7 +15,7 @@ import com.baidu.che.codriversdk.manager.CdTTSPlayerManager;
  * TTS语音播报管理类
  */
 
-public class TTSManagerActivity extends BaseActivity {
+public class TTSManagerActivity extends EVBaseActivity {
 
     private EditText editText;
 

@@ -16,14 +16,14 @@ import android.widget.TextView;
 import com.faw.seniar9.util.FireUtil;
 import com.faw.seniar9.util.GetPostUrl;
 import com.faw.seniar9.util.LogUtil;
-import com.faw.seniar9.util.ManuaConfig;
-import com.faw.seniar9.util.SharedpreferencesUtil;
+import com.faw.seniar9.util.EVManuaConfig;
+import com.faw.seniar9.util.EVSharedpreferencesUtil;
 import com.wyc.c217_car.R;
 
 import java.util.ArrayList;
 
 
-public class ManuaWelecomActivity extends BaseActivity {
+public class EVManuaWelecomActivity extends EVBaseActivity {
 
 
     public int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 2000;
@@ -35,9 +35,9 @@ public class ManuaWelecomActivity extends BaseActivity {
     protected void initData() {
         LogUtil.logError("android.os.Build.VERSION.RELEASE = " + android.os.Build.VERSION.RELEASE);
 
-        setContentView(R.layout.activity_m_welecom);
+        setContentView(R.layout.ev_activity_m_welecom);
         if (getIntent() != null && getIntent().getStringExtra("carModel") != null) {
-            SharedpreferencesUtil.setCarModel(this, getIntent().getStringExtra("carModel"));
+            EVSharedpreferencesUtil.setCarModel(this, getIntent().getStringExtra("carModel"));
         }
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion >= 23) {
@@ -55,7 +55,7 @@ public class ManuaWelecomActivity extends BaseActivity {
         } else {
             goMainActivity();
         }
-        if (SharedpreferencesUtil.getIsFirst(this)) {
+        if (EVSharedpreferencesUtil.getIsFirst(this)) {
             FireUtil.isExist(this);
         }
         new Thread() {
@@ -64,8 +64,8 @@ public class ManuaWelecomActivity extends BaseActivity {
                 super.run();
                 String result = GetPostUrl.get("http://www.e-guides.faw.cn/ev_admin/index.php?m=home&c=index&a=get_new_version&car_type=1");
                 LogUtil.logError("result = " + result);
-                SharedpreferencesUtil.setVersion(ManuaWelecomActivity.this, result);
-                ManuaConfig.VERSION = result;
+                EVSharedpreferencesUtil.setVersion(EVManuaWelecomActivity.this, result);
+                EVManuaConfig.VERSION = result;
             }
         }.start();
 
@@ -86,10 +86,10 @@ public class ManuaWelecomActivity extends BaseActivity {
     @Override
     protected void initWidgetActions() {
         LogUtil.logError("============isServiceRunning1==============");
-//        if (!isServiceRunning(this, "TargetService")) {
+//        if (!isServiceRunning(this, "EVTargetService")) {
 //            LogUtil.logError("============isServiceRunning==============");
 //            Intent i = new Intent();
-//            i.setClass(this, TargetService.class);
+//            i.setClass(this, EVTargetService.class);
 //            startService(i);
 //        }
     }
@@ -145,23 +145,23 @@ public class ManuaWelecomActivity extends BaseActivity {
     private void goNext() {
 
 
-        boolean isFirst = SharedpreferencesUtil.getIsFirst(com.faw.seniar9.ManuaWelecomActivity.this);
+        boolean isFirst = EVSharedpreferencesUtil.getIsFirst(com.faw.seniar9.EVManuaWelecomActivity.this);
 //        if (!isFirst) {
         handler.removeMessages(100001);
         handler.removeMessages(10000);
-        if (SharedpreferencesUtil.isGuest(this)) {
-            Intent intent = new Intent(com.faw.seniar9.ManuaWelecomActivity.this, ManualSelecteCarActivity.class);
+        if (EVSharedpreferencesUtil.isGuest(this)) {
+            Intent intent = new Intent(com.faw.seniar9.EVManuaWelecomActivity.this, EVManualSelecteCarActivity.class);
             startActivity(intent);
             finish();
         } else {
-            Intent intent = new Intent(com.faw.seniar9.ManuaWelecomActivity.this, ManualWebActivity.class);
+            Intent intent = new Intent(com.faw.seniar9.EVManuaWelecomActivity.this, EVManualWebActivity.class);
             startActivity(intent);
-            SharedpreferencesUtil.setIsFirst(ManuaWelecomActivity.this, false);
+            EVSharedpreferencesUtil.setIsFirst(EVManuaWelecomActivity.this, false);
             finish();
         }
 
 //        } else {
-//            Intent intent = new Intent(ManuaWelecomActivity.this, ManualSelecteCarActivity.class);
+//            Intent intent = new Intent(EVManuaWelecomActivity.this, EVManualSelecteCarActivity.class);
 //            startActivity(intent);
 //            finish();
 //        }
@@ -195,7 +195,7 @@ public class ManuaWelecomActivity extends BaseActivity {
 
             super.handleMessage(msg);
 
-            boolean isFirst = SharedpreferencesUtil.getIsFirst(com.faw.seniar9.ManuaWelecomActivity.this);
+            boolean isFirst = EVSharedpreferencesUtil.getIsFirst(com.faw.seniar9.EVManuaWelecomActivity.this);
             if (isFirst) {
                 if (msg.what == 0) {
                     manua_mzsm.setVisibility(View.VISIBLE);

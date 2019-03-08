@@ -13,7 +13,7 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.util.Log;
 
-public class TargetService extends Service {
+public class EVTargetService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -54,10 +54,10 @@ public class TargetService extends Service {
 //                LogUtil.logError("feature = " + feature);
 //                LogUtil.logError("extra = " + extra);
 //
-//                Intent intent = new Intent(ManualWebActivity.context, ManuaSetActivity.class);
+//                Intent intent = new Intent(EVManualWebActivity.context, EVManuaSetActivity.class);
 //                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                intent.putExtra("url", ManuaConfig.getManuaUrl(ManualWebActivity.context) + "/pages/search.html?keyWord=" + feature);
-//                ManualWebActivity.context.startActivity(intent);
+//                intent.putExtra("url", EVManuaConfig.getManuaUrl(EVManualWebActivity.context) + "/pages/search.html?keyWord=" + feature);
+//                EVManualWebActivity.context.startActivity(intent);
 //                return false;
 //            }
 //        });

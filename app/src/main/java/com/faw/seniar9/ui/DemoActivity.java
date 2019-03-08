@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.faw.seniar9.ManuaApi;
+import com.faw.seniar9.EVManuaApi;
 import com.faw.seniar9.R;
 
 /**
@@ -20,7 +20,7 @@ public class DemoActivity extends Activity {
     }
 
     public void onClick(View view) {
-        ManuaApi.getInstance().openManua(this,"EV_1");
+        EVManuaApi.getInstance().openManua(this,"");
     }
 
 }
